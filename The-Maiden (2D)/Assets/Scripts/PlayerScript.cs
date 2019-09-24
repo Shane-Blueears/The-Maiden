@@ -28,7 +28,11 @@ public class PlayerScript : MonoBehaviour
 		//movement setup
 		Vector3 movement = new Vector3();
 		movement.x = Input.GetAxis("Horizontal");
-
+        int i = 0;
+        while (i == 0)
+        {
+            i++;
+        }
 		//jump setup
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
