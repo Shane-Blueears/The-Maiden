@@ -9,14 +9,17 @@ public class PlayerScript : MonoBehaviour
 
 	public int startingHealth = 100;
 
-	private int currentHealth;
+    public float speed = 10f;
 
-	public float speed = 10f;
+    public bool isLeftDirection;
+
+    private int currentHealth;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		currentHealth = startingHealth;
+        isLeftDirection = true;
 	}
 
 	//Update is called once per frame
@@ -32,10 +35,30 @@ public class PlayerScript : MonoBehaviour
 			movement.y = 5 * speed;
 		}
 
-		//Dash setup
+        //Dash setup
+        //Check which direction the player is looking at first
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            print("Hit A");
+            isLeftDirection = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            isLeftDirection = false;
+        }
+
 		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
-			movement.x = 10 * speed;
+            print(isLeftDirection);
+            if (isLeftDirection)
+            {
+                print("Hit");
+                movement.x = -10 * speed;
+            }
+            else
+            {
+                movement.x = 10 * speed;
+            }
 		}
 		//Move the player
 		this.GetComponent<Rigidbody>().AddForce(movement * speed);
